@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {
     BrowserRouter,
     Routes, Route, Navigate, useLocation
@@ -15,6 +15,13 @@ export const AuthContext = React.createContext();
 const Router = () => {
 
     const [session, setSession] = useState(null);
+    useEffect(() => {
+      const dataSession = JSON.parse(sessionStorage.getItem('session'));
+      if (dataSession) {
+          setSession(dataSession);
+      }
+    }, [])
+    
 
     return (
         <AuthContext.Provider value={{ session, setSession }}>
