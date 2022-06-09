@@ -15,6 +15,7 @@ export const AuthContext = React.createContext();
 const Router = () => {
 
     const [session, setSession] = useState(null);
+    const [showModal, setShowModal] = useState(false)
     useEffect(() => {
       const dataSession = JSON.parse(sessionStorage.getItem('session'));
       if (dataSession) {
@@ -24,7 +25,7 @@ const Router = () => {
     
 
     return (
-        <AuthContext.Provider value={{ session, setSession }}>
+        <AuthContext.Provider value={{ session, setSession, showModal, setShowModal }}>
             <BrowserRouter>
                 <Routes>
                     <Route path="/login" element={<Login />} />
