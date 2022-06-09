@@ -11,7 +11,7 @@ const Move = ({move}) => {
         <span>{formatDate(move.date_bill)}</span>
         <span>{move.observation}</span>
       </div>
-      <span>{currency(move.value)}</span>
+      <span>{currency(move.value, move.type)}</span>
     </article>
   )
 }

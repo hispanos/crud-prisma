@@ -10,7 +10,7 @@ const Home = () => {
 
   const [loading, setLoading] = useState(true);
   const [dataMoves, setDataMoves] = useState(null);
-  const { session: { username } } = useContext(AuthContext);
+  const { session: { username }, setSession } = useContext(AuthContext);
 
   useEffect(() => {
     const getData = async () => {
@@ -27,12 +27,20 @@ const Home = () => {
     getData();
   }, [])
 
+  const handleLogout = () => {
+    sessionStorage.clear();
+    setSession(null);
+  }
+
 
   return (
     <div className='home'>
       <Header />
       <main className='main'>
-        <h1>Movimientos</h1>
+        <section className='head'>
+          <h1>Movimientos</h1>
+          <button className='button__logout' onClick={handleLogout}>Cerrar Sesión</button>
+        </section>
         {
           !loading &&
           <section className='moves'>
@@ -44,7 +52,7 @@ const Home = () => {
 
       </main>
       <footer className='footer'>
-        <button className='footer__button__add'>+</button>
+        <button className='button__add'>+</button>
       </footer>
     </div>
   )
